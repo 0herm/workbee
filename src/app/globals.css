@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/InterFont.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --color-dark: red;
+    --color-normal: red;
+    --color-light: red;
+    --color-extralight: red;
+    --color-superlight: red;
+    --color-almostbright: red;
+    --color-bright: red;
+    --color-sidebar: red;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    transition: background 0.4s, color 0.4s;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
+.dark {
     --background: #0a0a0a;
     --foreground: #ededed;
-  }
+    --color-dark: #1a1a1a;
+    --color-sidebar: #121212;
+    --color-normal: #171717;
+    --color-light: #212121;
+    --color-extralight: #323232;
+    --color-superlight: #424242;
+    --color-almostbright: #6b6b6b;
+    --color-bright: white;
+}
+
+.light {
+    --background: #ffffff;
+    --foreground: #171717;
+    --color-dark: #e7e5dd;
+    --color-sidebar: #d6d6d6;
+    --color-normal: #fafdf3;
+    --color-light: #f0efe0;
+    --color-extralight: #d6d6d6;
+    --color-superlight: #b0b0b0;
+    --color-almostbright: #bdbdbd;
+    --color-bright: black;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    transition: background 0.4s, color 0.4s;
 }
