@@ -9,6 +9,7 @@
 }
 
 @theme {
+    --color-darker: red;
     --color-dark: red;
     --color-normal: red;
     --color-light: red;
@@ -16,7 +17,6 @@
     --color-superlight: red;
     --color-almostbright: red;
     --color-bright: red;
-    --color-sidebar: red;
 }
 
 :root {
@@ -26,8 +26,8 @@
 .dark {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --color-darker: #121212;
     --color-dark: #1a1a1a;
-    --color-sidebar: #121212;
     --color-normal: #171717;
     --color-light: #212121;
     --color-extralight: #323232;
@@ -39,8 +39,8 @@
 .light {
     --background: #ffffff;
     --foreground: #171717;
+    --color-darker: #d6d6d6;
     --color-dark: #e7e5dd;
-    --color-sidebar: #d6d6d6;
     --color-normal: #fafdf3;
     --color-light: #f0efe0;
     --color-extralight: #d6d6d6;
