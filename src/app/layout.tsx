@@ -18,15 +18,15 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     return (
         <html lang='en' className={`${theme}`} suppressHydrationWarning>
             <head/>
-            <body className='bg-dark w-screen h-screen m-0 min-h-screen px-[4rem] pb-[1rem] font-[family-name:Inter] antialiased align-middle break-words leading-[1.5] tracking-normal'>
-                <div className='relative bg-normal w-full h-full rounded-b-lg pt-[1rem]'>
+            <body className='bg-dark w-screen h-screen m-0 min-h-screen sm:px-[2rem] md:px-[4rem] lg:px-[8rem] pb-[1rem] font-[family-name:Inter] antialiased align-middle break-words leading-[1.5] tracking-normal'>
+                <div className='relative bg-normal w-full h-full rounded-b-lg pt-[1rem] grid grid-rows-[min-content_1fr_min-content]'>
                     <nav className='w-full flex justify-center'>
                         <NavBar />
                     </nav>
-                    <main className='w-full'>
+                    <main className='w-full h-full'>
                         {children}
                     </main>
-                    <footer className='absolute bottom-0 w-full'>
+                    <footer className='w-full mt-auto'>
                         <Footer />
                     </footer>
                 </div>
