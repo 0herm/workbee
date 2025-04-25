@@ -8,6 +8,12 @@
     font-display: swap;
 }
 
+@keyframes jump {
+    40% {
+        transform: translateY(-.3rem);
+    }
+}
+
 @theme {
     --color-darker: red;
     --color-dark: red;
@@ -16,11 +22,12 @@
     --color-extralight: red;
     --color-superlight: red;
     --color-almostbright: red;
+    --color-softbright: red;
     --color-bright: red;
 }
 
-:root {
-    transition: background 0.4s, color 0.4s;
+* {
+    transition: background 0.4s, color 0.4s, fill 0.4s, stroke 0.4s;
 }
 
 .dark {
@@ -33,6 +40,7 @@
     --color-extralight: #323232;
     --color-superlight: #424242;
     --color-almostbright: #6b6b6b;
+    --color-softbright: #b1b1b1;
     --color-bright: white;
 }
 
@@ -46,6 +54,7 @@
     --color-extralight: #d6d6d6;
     --color-superlight: #b0b0b0;
     --color-almostbright: #bdbdbd;
+    --color-softbright: #e3e3e3;
     --color-bright: black;
 }
 
