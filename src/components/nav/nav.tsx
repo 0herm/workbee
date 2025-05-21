@@ -4,6 +4,8 @@ import LangToggle from '@components/langtoggle/LangToggle'
 import { CircleUser, Sun } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import no from '@dictionaries/navBar/no.json'
+import en from '@dictionaries/navBar/en.json'
 
 type NavBarProps = {
     lang: Lang
@@ -11,6 +13,8 @@ type NavBarProps = {
 
 export default function NavBar({lang}: NavBarProps) {
     const page = usePathname().split('/')[1]
+    const text : NavBarDictionary = lang === 'no' ? no : en
+    
 
     return (
         <div className='w-full h-full flex flex-row justify-around'>
@@ -30,7 +34,7 @@ export default function NavBar({lang}: NavBarProps) {
                             aria-hidden="true"
                         />
                     }
-                    <h1 className="relative z-10">About</h1>
+                    <h1 className="relative z-10">{text.about}</h1>
                 </Link>
                 <Link
                     href='projects'
@@ -42,7 +46,7 @@ export default function NavBar({lang}: NavBarProps) {
                             aria-hidden="true"
                         />
                     }
-                    <h1 className="relative z-10">Projects</h1>
+                    <h1 className="relative z-10">{text.projects}</h1>
                 </Link>
                 <Link
                     href='skills'
@@ -54,7 +58,7 @@ export default function NavBar({lang}: NavBarProps) {
                             aria-hidden="true"
                         />
                     }
-                    <h1 className="relative z-10">Skills</h1>
+                    <h1 className="relative z-10">{text.skills}</h1>
                 </Link>
             </div>
             <div className='flex flex-row items-center gap-[0.5rem] bg-darker p-[0.5rem] rounded-full border-[0.15rem] border-light'>
