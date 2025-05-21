@@ -22,7 +22,7 @@
       "@components/*": ["./src/components/*"],
       "@utils/*": ["./src/utils/*"],
       "@app/*": ["./src/app/*"],
-      "@text/*": ["./public/text/*"],
+      "@dictionaries/*": ["./public/dictionaries/*"],
       "@config": ["./constants.ts"],
       "@/*": ["./src/*"]
     }

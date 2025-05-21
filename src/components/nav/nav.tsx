@@ -19,24 +19,42 @@ export default function NavBar({lang}: NavBarProps) {
                     <CircleUser className='size-[1.75rem]'/>
                 </Link>
             </div>
-            <div className='flex flex-row items-center gap-[2rem] bg-darker px-[1.5rem] rounded-full border-[0.15rem] border-light'>
-                <Link href='/' className='relative flex items-center h-full'>
-                    <h1>About</h1>
+            <div className='flex flex-row items-center gap-[2rem] bg-darker px-[1.5rem] rounded-full border-[0.15rem] border-light relative overflow-hidden'>
+                <Link
+                    href='/'
+                    className='relative flex items-center h-full'
+                >
                     {page === '' &&
-                        <span className='absolute inset-x-1 -bottom-[0.15rem] h-[0.15rem] bg-gradient-to-r from-sky-500/0 via-sky-500/40 to-sky-500/0'></span>
+                        <span
+                            className="absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full bg-teal-500/40 blur-md"
+                            aria-hidden="true"
+                        />
                     }
+                    <h1 className="relative z-10">About</h1>
                 </Link>
-                <Link href='projects' className='relative flex items-center h-full'>
-                    <h1>Projects</h1>
+                <Link
+                    href='projects'
+                    className='relative flex items-center h-full transition-shadow duration-300'
+                >
                     {page === 'projects' &&
-                        <span className='absolute inset-x-1 -bottom-[0.15rem] h-[0.15rem] bg-gradient-to-r from-sky-500/0 via-sky-500/40 to-sky-500/0'></span>
+                        <span
+                            className="absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full bg-cyan-500/40 blur-md"
+                            aria-hidden="true"
+                        />
                     }
+                    <h1 className="relative z-10">Projects</h1>
                 </Link>
-                <Link href='skills' className='relative flex items-center h-full'>
-                    <h1>Skills</h1>
+                <Link
+                    href='skills'
+                    className='relative flex items-center h-full transition-shadow duration-300'
+                >
                     {page === 'skills' &&
-                        <span className='absolute inset-x-1 -bottom-[0.15rem] h-[0.15rem] bg-gradient-to-r from-sky-500/0 via-sky-500/40 to-sky-500/0'></span>
+                        <span
+                            className="absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full bg-blue-500/40 blur-md"
+                            aria-hidden="true"
+                        />
                     }
+                    <h1 className="relative z-10">Skills</h1>
                 </Link>
             </div>
             <div className='flex flex-row items-center gap-[0.5rem] bg-darker p-[0.5rem] rounded-full border-[0.15rem] border-light'>
