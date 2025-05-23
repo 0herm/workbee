@@ -1,0 +1,10 @@
+services:
+  workbee:
+    container_name: workbee
+    tmpfs:
+      - /var/lib/varnish:rw,size=1g,exec
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
