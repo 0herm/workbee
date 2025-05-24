@@ -29,7 +29,7 @@ COPY . .
 RUN npm run build
 
 # Exposes port 8080
-EXPOSE 8080
+EXPOSE 3000
 
 # Starts the application
 CMD ["/bin/sh", "/app/entrypoint.sh"]

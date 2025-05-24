@@ -38,13 +38,13 @@ export default async function Home() {
             <div className='mt-[2.5rem] grid grid-cols-1 md:grid-cols-2 gap-[2rem]'>
                 {/* Education Section */}
                 <div className='bg-dark p-[1.5rem] rounded-lg shadow-md'>
-                    <div className='text-xl font-semibold mb-[1rem] text-white'>
+                    <div className='text-xl font-semibold mb-[1rem] '>
                         {text.education.title}
                     </div>
                     <ol className='space-y-[1rem]'>
                         {Object.values(text.education.degrees).map((item, index) => (
                             <li key={index} className='border-l-4 border-primary pl-[1rem]'>
-                                <span className='block text-lg font-medium text-white'>{item.title}</span>
+                                <span className='block text-lg font-medium '>{item.title}</span>
                                 <div className='flex flex-col md:flex-row md:items-center gap-[0.5rem] text-almostbright text-sm mt-[0.25rem]'>
                                     <span>{item.degree}</span>
                                     <span className='hidden md:inline mx-[0.5rem]'>•</span>
@@ -57,13 +57,13 @@ export default async function Home() {
                 
                 {/* Work Section */}
                 <div className='bg-dark p-[1.5rem] rounded-lg shadow-md'>
-                    <div className='text-xl font-semibold mb-[1rem] text-white'>
+                    <div className='text-xl font-semibold mb-[1rem] '>
                         {text.work.title}
                     </div>
                     <ol className='space-y-[1rem]'>
                         {Object.values(text.work.jobs).map((item, index) => (
                             <li key={index} className='border-l-4 border-primary pl-[1rem]'>
-                                <span className='block text-lg font-medium text-white'>{item.company}</span>
+                                <span className='block text-lg font-medium '>{item.company}</span>
                                 <div className='flex flex-col md:flex-row md:items-center gap-[0.5rem] text-almostbright text-sm mt-[0.25rem]'>
                                     <span>{item.position}</span>
                                     <span className='hidden md:inline mx-[0.5rem]'>•</span>
@@ -79,14 +79,14 @@ export default async function Home() {
             <div className='mt-[4rem] w-full max-w-5xl mx-auto flex flex-col items-center'>
                 <div className='w-full bg-dark p-[2.5rem] rounded-2xl border border-[#23272f]'>
                     <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-[2rem] gap-[1rem]'>
-                        <span className='text-2xl md:text-3xl font-bold text-white'>
+                        <span className='text-2xl md:text-3xl font-bold '>
                             {text.projects.title}
                         </span>
                         <div className='flex items-center gap-[1.5rem]'>
                             <span className='h-[0.25rem] w-[6rem] bg-primary rounded-full md:ml-[1.5rem]' />
                             <Link
                                 href='/projects'
-                                className='px-5 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition ml-auto'
+                                className='px-5 py-2 bg-primary  rounded-lg font-semibold hover:bg-opacity-90 transition ml-auto'
                             >
                                 {text.projects.viewMore}
                             </Link>
@@ -98,7 +98,7 @@ export default async function Home() {
                                 key={index}
                                 className='border-l-4 border-primary pl-[1.5rem] py-[1rem] bg-normal rounded-lg flex flex-col h-full'
                             >
-                                <span className='text-lg font-semibold text-white mb-[0.5rem]'>
+                                <span className='text-lg font-semibold  mb-[0.5rem]'>
                                     {project.name}
                                 </span>
                                 <p className='text-almostbright text-sm mt-[0.25rem] mb-[1rem] pr-[1rem]'>
@@ -107,6 +107,42 @@ export default async function Home() {
                                 {project.link && (
                                     <Link
                                         href={project.link}
+                                        className='text-primary underline underline-offset-4 font-medium mt-auto self-start'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                    >
+                                        {text.projects.viewProject}
+                                    </Link>
+                                )}
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            </div>
+
+            {/* Contributions Section */}
+            <div className='mt-[4rem] w-full max-w-5xl mx-auto flex flex-col items-center'>
+                <div className='w-full bg-dark p-[2.5rem] rounded-2xl border border-[#23272f]'>
+                    <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-[2rem] gap-[1rem]'>
+                        <span className='text-2xl md:text-3xl font-bold '>
+                            {text.contributions.title}
+                        </span>
+                    </div>
+                    <ol className='grid grid-cols-1 md:grid-cols-2 gap-[2rem]'>
+                        {Object.values(text.contributions.contributions).map((contribution, index) => (
+                            <li
+                                key={index}
+                                className='border-l-4 border-primary pl-[1.5rem] py-[1rem] bg-normal rounded-lg flex flex-col h-full'
+                            >
+                                <span className='text-lg font-semibold  mb-[0.5rem]'>
+                                    {contribution.name}
+                                </span>
+                                <p className='text-almostbright text-sm mt-[0.25rem] mb-[1rem] pr-[1rem]'>
+                                    {contribution.description}
+                                </p>
+                                {contribution.link && (
+                                    <Link
+                                        href={contribution.link}
                                         className='text-primary underline underline-offset-4 font-medium mt-auto self-start'
                                         target='_blank'
                                         rel='noopener noreferrer'

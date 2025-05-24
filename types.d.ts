@@ -31,7 +31,19 @@ type LandingPageDictionary = {
             [key: string]: {
                 name: string
                 description: string
-                link: string
+                link?: string
+            }
+        }
+    }
+    contributions: {
+        title: string
+        viewProject: string
+        viewMore: string
+        contributions: {
+            [key: string]: {
+                name: string
+                description: string
+                link?: string
             }
         }
     }

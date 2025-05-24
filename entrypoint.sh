@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # Starts varnish
-varnishd -a :8080 -f /etc/varnish/default.vcl -s malloc,512m &
+varnishd -a :3000 -f /etc/varnish/default.vcl -s malloc,512m &
 
 
 echo "-------------------- NOTE --------------------"
 echo ""
-echo "SERVING CACHED PROJECT ON http://localhost:8080."
+echo "SERVING CACHED PROJECT ON http://localhost:3000."
 echo ""
 echo "-------------------- NOTE --------------------"
 

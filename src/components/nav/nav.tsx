@@ -1,11 +1,12 @@
 'use client'
 
 import LangToggle from '@components/langtoggle/LangToggle'
-import { CircleUser, Sun } from 'lucide-react'
+import { CircleUser } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import no from '@dictionaries/navBar/no.json'
 import en from '@dictionaries/navBar/en.json'
+import ThemeToggle from '@components/themetoggle/themeToggle'
 
 type NavBarProps = {
     lang: Lang
@@ -62,7 +63,7 @@ export default function NavBar({lang}: NavBarProps) {
                 </Link>
             </div>
             <div className='flex flex-row items-center gap-[0.5rem] bg-darker p-[0.5rem] rounded-full border-[0.15rem] border-light'>
-                <Sun className='size-[1.75rem]'/>
+                <ThemeToggle />
                 <LangToggle serverLang={lang} />
             </div>
         </div>
