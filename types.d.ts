@@ -3,6 +3,7 @@ type Lang = 'en' | 'no'
 type LandingPageDictionary = {
     title: string
     description: string
+    experience: string
     education: {
         title: string
         degrees: {
@@ -50,9 +51,21 @@ type LandingPageDictionary = {
 }
 
 type NavBarDictionary = {
-    about: string
-    projects: string
-    skills: string
+    menu: string
+    links: {
+        about: {
+            title: string
+            navigation: string
+        }
+        projects: {
+            title: string
+            navigation: string
+        }
+        skills: {
+            title: string
+            navigation: string
+        }
+    }
 }
 
 type FooterDictionary = {

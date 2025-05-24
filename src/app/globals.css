@@ -8,13 +8,8 @@
     font-display: swap;
 }
 
-@keyframes jump {
-    40% {
-        transform: translateY(-.3rem);
-    }
-}
-
 @custom-variant dark (&:where(.dark, .dark *));
+
 
 @theme {
     --color-darker: red;
@@ -26,10 +21,6 @@
     --color-almostbright: red;
     --color-softbright: red;
     --color-bright: red;
-}
-
-* {
-    transition: background 0.4s, color 0.4s, fill 0.4s, stroke 0.4s;
 }
 
 .dark {
@@ -60,8 +51,18 @@
     --color-bright: black;
 }
 
+* {
+    transition: background 0.4s, color 0.4s, fill 0.4s, stroke 0.4s;
+}
+
 body {
     color: var(--foreground);
-    background: var(--background);
+    background: var(--color-dark);
     transition: background 0.4s, color 0.4s;
+}
+
+@keyframes jump {
+    40% {
+        transform: translateY(-.3rem);
+    }
 }

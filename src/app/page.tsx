@@ -5,6 +5,7 @@ import en from '@dictionaries/landing/en.json'
 import noPersonal from '@dictionaries/personal/no.json'
 import enPersonal from '@dictionaries/personal/en.json'
 import { cookies } from 'next/headers'
+import { ArrowRight, Briefcase, Code2, ExternalLink, GitBranch } from 'lucide-react'
 
 export default async function Home() {
     const lang = (await cookies()).get('lang')?.value || 'no'
@@ -12,7 +13,7 @@ export default async function Home() {
     const textPersonal = lang === 'no' ? noPersonal : enPersonal
 
     return (
-        <div className='p-[4rem]'>
+        <div className='p-[1.5rem] sm:p-[4rem] flex flex-col gap-[5rem]'>
             <div className='flex flex-col gap-[1rem]'>
                 <h1 className='text-4xl font-bold max-w-[30rem]'>{text.title}</h1>
                 <p className='font-light text-almostbright max-w-[40rem]'>{text.description}</p>
@@ -20,7 +21,7 @@ export default async function Home() {
 
                     {/* Github */}
                     <Link href={textPersonal.links.github} className='group'>
-                        <SiGithub className='fill-almostbright size-[1.25rem] transition-colors duration-300 group-hover:fill-white' />
+                        <SiGithub className='fill-almostbright size-[1.25rem] transition-colors duration-300 group-hover:fill-bright' />
                     </Link>
 
                     {/* Gitlab */}
@@ -35,124 +36,153 @@ export default async function Home() {
                 </div>
             </div>
 
-            <div className='mt-[2.5rem] grid grid-cols-1 md:grid-cols-2 gap-[2rem]'>
-                {/* Education Section */}
-                <div className='bg-dark p-[1.5rem] rounded-lg shadow-md'>
-                    <div className='text-xl font-semibold mb-[1rem] '>
-                        {text.education.title}
-                    </div>
-                    <ol className='space-y-[1rem]'>
-                        {Object.values(text.education.degrees).map((item, index) => (
-                            <li key={index} className='border-l-4 border-primary pl-[1rem]'>
-                                <span className='block text-lg font-medium '>{item.title}</span>
-                                <div className='flex flex-col md:flex-row md:items-center gap-[0.5rem] text-almostbright text-sm mt-[0.25rem]'>
-                                    <span>{item.degree}</span>
-                                    <span className='hidden md:inline mx-[0.5rem]'>•</span>
-                                    <span>{item.period}</span>
+            {/* Experience Section */}
+            <div>
+                <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
+                    <span className="p-2 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg">
+                        <Briefcase className="size-6 text-blue-400" />
+                    </span>
+                    {text.experience}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-12">
+
+                    {/* Work Timeline */}
+                    <div>
+                        <h3 className="text-xl font-semibold mb-8 flex items-center gap-2">
+                            {text.work.title}
+                            <div className="h-px flex-1 bg-gradient-to-r from-blue-500/50 to-transparent"></div>
+                        </h3>
+                        <div className="relative">
+                            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-blue-500/50 to-transparent"></div>
+                            {Object.values(text.work.jobs).map((job, index) => (
+                                <div key={index} className="relative pl-12 pb-10 group">
+                                    <div className="absolute left-2.5 w-3 h-3 bg-blue-500 rounded-full group-hover:scale-150 transition-transform duration-300 shadow-lg shadow-blue-500/50"></div>
+                                    <div className="p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
+                                        <span className="text-xs font-medium text-blue-400 uppercase tracking-wider">
+                                            {job.period}
+                                        </span>
+                                        <h4 className="text-lg font-semibold mt-2 mb-1">{job.company}</h4>
+                                        <p className="text-almostbright">{job.position}</p>
+                                    </div>
                                 </div>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-                
-                {/* Work Section */}
-                <div className='bg-dark p-[1.5rem] rounded-lg shadow-md'>
-                    <div className='text-xl font-semibold mb-[1rem] '>
-                        {text.work.title}
+                            ))}
+                        </div>
                     </div>
-                    <ol className='space-y-[1rem]'>
-                        {Object.values(text.work.jobs).map((item, index) => (
-                            <li key={index} className='border-l-4 border-primary pl-[1rem]'>
-                                <span className='block text-lg font-medium '>{item.company}</span>
-                                <div className='flex flex-col md:flex-row md:items-center gap-[0.5rem] text-almostbright text-sm mt-[0.25rem]'>
-                                    <span>{item.position}</span>
-                                    <span className='hidden md:inline mx-[0.5rem]'>•</span>
-                                    <span>{item.period}</span>
+
+                    {/* Education Timeline */}
+                    <div>
+                        <h3 className="text-xl font-semibold mb-8 flex items-center gap-2">
+                            {text.education.title}
+                            <div className="h-px flex-1 bg-gradient-to-r from-purple-500/50 to-transparent"></div>
+                        </h3>
+                        <div className="relative">
+                            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 via-purple-500/50 to-transparent"></div>
+                            {Object.values(text.education.degrees).map((degree, index) => (
+                                <div key={index} className="relative pl-12 pb-10 group">
+                                    <div className="absolute left-2.5 w-3 h-3 bg-purple-500 rounded-full group-hover:scale-150 transition-transform duration-300 shadow-lg shadow-purple-500/50"></div>
+                                    <div className="p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
+                                        <span className="text-xs font-medium text-purple-400 uppercase tracking-wider">
+                                            {degree.period}
+                                        </span>
+                                        <h4 className="text-lg font-semibold mt-2 mb-1">{degree.title}</h4>
+                                        <p className="text-almostbright">{degree.degree}</p>
+                                    </div>
                                 </div>
-                            </li>
-                        ))}
-                    </ol>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {/* Projects Section */}
-            <div className='mt-[4rem] w-full max-w-5xl mx-auto flex flex-col items-center'>
-                <div className='w-full bg-dark p-[2.5rem] rounded-2xl border border-[#23272f]'>
-                    <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-[2rem] gap-[1rem]'>
-                        <span className='text-2xl md:text-3xl font-bold '>
-                            {text.projects.title}
+            <div>
+                <div className="flex items-center justify-between mb-12">
+                    <h2 className="text-3xl font-bold flex items-center gap-3">
+                        <span className="p-2 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-lg">
+                            <Code2 className="size-6 text-green-600" />
                         </span>
-                        <div className='flex items-center gap-[1.5rem]'>
-                            <span className='h-[0.25rem] w-[6rem] bg-primary rounded-full md:ml-[1.5rem]' />
-                            <Link
-                                href='/projects'
-                                className='px-5 py-2 bg-primary  rounded-lg font-semibold hover:bg-opacity-90 transition ml-auto'
-                            >
-                                {text.projects.viewMore}
-                            </Link>
-                        </div>
-                    </div>
-                    <ol className='grid grid-cols-1 md:grid-cols-2 gap-[2rem]'>
-                        {Object.values(text.projects.projects).map((project, index) => (
-                            <li
-                                key={index}
-                                className='border-l-4 border-primary pl-[1.5rem] py-[1rem] bg-normal rounded-lg flex flex-col h-full'
-                            >
-                                <span className='text-lg font-semibold  mb-[0.5rem]'>
+                        {text.projects.title}
+                    </h2>
+                    <Link
+                        href="/projects"
+                        className="group flex items-center gap-2 px-4 py-2 rounded-lg border bg-darker border-extralight hover:border-superlight transition-all duration-300"
+                    >
+                        <span className="text-sm font-medium">{text.projects.viewMore}</span>
+                        <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                    {Object.values(text.projects.projects).map((project, index) => (
+                        <div
+                            key={index}
+                            className="group relative p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-green-500/10 hover:-translate-y-1 transition-all duration-300"
+                        >
+                            <div className="flex items-start justify-between mb-4">
+                                <h3 className="text-xl font-semibold group-hover:text-green-600 transition-colors">
                                     {project.name}
-                                </span>
-                                <p className='text-almostbright text-sm mt-[0.25rem] mb-[1rem] pr-[1rem]'>
-                                    {project.description}
-                                </p>
-                                {project.link && (
-                                    <Link
-                                        href={project.link}
-                                        className='text-primary underline underline-offset-4 font-medium mt-auto self-start'
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                    >
-                                        {text.projects.viewProject}
-                                    </Link>
-                                )}
-                            </li>
-                        ))}
-                    </ol>
+                                </h3>
+                                <Code2 className="size-5 text-superlight group-hover:text-green-600 transition-colors" />
+                            </div>
+                            <p className="text-almostbright mb-6 line-clamp-3">{project.description}</p>
+                            {project.link && (
+                                <Link
+                                    href={project.link}
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-800/80 to-cyan-800/80 text-white rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <span>{text.projects.viewProject}</span>
+                                    <ExternalLink className="size-4 transition-transform" />
+                                </Link>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
 
             {/* Contributions Section */}
-            <div className='mt-[4rem] w-full max-w-5xl mx-auto flex flex-col items-center'>
-                <div className='w-full bg-dark p-[2.5rem] rounded-2xl border border-[#23272f]'>
-                    <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-[2rem] gap-[1rem]'>
-                        <span className='text-2xl md:text-3xl font-bold '>
-                            {text.contributions.title}
+            <div>
+                <div className="flex items-center justify-between mb-12">
+                    <h2 className="text-3xl font-bold flex items-center gap-3">
+                        <span className="p-2 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg">
+                            <GitBranch className="size-6 text-purple-400" />
                         </span>
-                    </div>
-                    <ol className='grid grid-cols-1 md:grid-cols-2 gap-[2rem]'>
-                        {Object.values(text.contributions.contributions).map((contribution, index) => (
-                            <li
-                                key={index}
-                                className='border-l-4 border-primary pl-[1.5rem] py-[1rem] bg-normal rounded-lg flex flex-col h-full'
-                            >
-                                <span className='text-lg font-semibold  mb-[0.5rem]'>
+                        {text.contributions.title}
+                    </h2>
+                    <Link
+                        href="/contributions"
+                        className="group flex items-center gap-2 px-4 py-2 rounded-lg border bg-darker border-extralight hover:border-superlight transition-all duration-300"
+                    >
+                        <span className="text-sm font-medium">{text.contributions.viewMore}</span>
+                        <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                    {Object.values(text.contributions.contributions).map((contribution, index) => (
+                        <div
+                            key={index}
+                            className="group relative p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300"
+                        >
+                            <div className="flex items-start justify-between mb-4">
+                                <h3 className="text-xl font-semibold group-hover:text-purple-400 transition-colors">
                                     {contribution.name}
-                                </span>
-                                <p className='text-almostbright text-sm mt-[0.25rem] mb-[1rem] pr-[1rem]'>
-                                    {contribution.description}
-                                </p>
-                                {contribution.link && (
-                                    <Link
-                                        href={contribution.link}
-                                        className='text-primary underline underline-offset-4 font-medium mt-auto self-start'
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                    >
-                                        {text.projects.viewProject}
-                                    </Link>
-                                )}
-                            </li>
-                        ))}
-                    </ol>
+                                </h3>
+                                <GitBranch className="size-5 text-superlight group-hover:text-purple-400 transition-colors" />
+                            </div>
+                            <p className="text-almostbright mb-6 line-clamp-3">{contribution.description}</p>
+                            {contribution.link && (
+                                <Link
+                                    href={contribution.link}
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-800/80 to-pink-800/80 text-white rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <span>{text.projects.viewProject}</span>
+                                    <ExternalLink className="size-4 transition-transform" />
+                                </Link>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

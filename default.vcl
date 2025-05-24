@@ -8,12 +8,14 @@ backend default {
 sub vcl_recv {
     if (req.http.Cookie) {
         set req.http.X-Theme = regsub(req.http.Cookie, ".*theme=([^;]+);?.*", "\1");
+        set req.http.X-Lang = regsub(req.http.Cookie, ".*lang=([^;]+);?.*", "\1");
     }
+
     return (hash);
 }
 
 sub vcl_hash {
-    hash_data(req.http.X-Theme);
+    hash_data(req.http.X-Theme + req.http.X-Lang);
 }
 
 sub vcl_backend_response {

@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { getCookie, setCookie } from '@/utils/cookies'
-import { useRouter } from 'next/navigation'
 
 export default function ThemeSwitch() {
-    const router = useRouter()
     const [theme, setTheme] = useState<'dark' | 'light'>('dark')
 
     useEffect(() => {
@@ -22,7 +20,6 @@ export default function ThemeSwitch() {
         const newTheme = theme === 'dark' ? 'light' : 'dark'
         setCookie('theme', newTheme)
         setTheme(newTheme)
-        router.refresh()
     }
 
     return (
