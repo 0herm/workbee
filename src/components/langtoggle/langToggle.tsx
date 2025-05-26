@@ -8,11 +8,11 @@ import { Globe } from 'lucide-react'
 export default function LangToggle() {
     const router = useRouter()
     
-    const [lang, setLang] = useState<'no' | 'en'>()
+    const [lang, setLang] = useState<Lang>('no')
     const [jump, setJump] = useState(false)
 
     useEffect(() => {
-        const savedLang = getCookie('lang') as 'no' | 'en'
+        const savedLang = getCookie('lang') as Lang
         if (savedLang) {
             setLang(savedLang)
         }
