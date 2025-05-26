@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-    font-family: 'Inter';
-    src: url('/fonts/InterFont.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 
@@ -52,7 +44,7 @@
 }
 
 * {
-    transition: background 0.4s, color 0.4s, fill 0.4s, stroke 0.4s;
+    transition: background 0.4s, color 0.4s, fill 0.4s, stroke 0.4s, box-shadow 0.4s;
 }
 
 body {

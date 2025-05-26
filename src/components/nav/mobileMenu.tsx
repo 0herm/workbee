@@ -69,13 +69,13 @@ export default function MobileNav({ text }: MobileNavProps) {
                     className={'size-[1.75rem] flex items-center justify-center'}
                     aria-expanded={isMenuOpen}
                 >
-                    <Menu className='size-[1.75rem] transition-transform duration-300' />
+                    <Menu className='size-[1.75rem]' />
                 </button>
             </div>
 
             {/* Overlay */}
             <div
-                className={`fixed top-0 left-0 w-screen h-screen z-[100] md:hidden transition-all duration-300 ${isMenuOpen ? 'opacity-80 pointer-events-auto backdrop-blur-[2px]' : 'opacity-0 pointer-events-none'}`}
+                className={`fixed top-0 left-0 w-screen h-screen z-[100] md:hidden ${isMenuOpen ? 'opacity-80 pointer-events-auto backdrop-blur-[2px]' : 'opacity-0 pointer-events-none'}`}
                 style={{ background: 'rgba(0,0,0,0.7)' }}
                 onClick={() => setIsMenuOpen(false)}
                 aria-hidden='true'
@@ -86,7 +86,7 @@ export default function MobileNav({ text }: MobileNavProps) {
                 id='mobile-menu-panel'
                 ref={panelRef}
                 tabIndex={-1}
-                className={`fixed top-0 right-0 h-screen w-[85%] max-w-[340px] bg-normal/95 backdrop-blur-lg border-l-[0.15rem] border-light shadow-2xl transform transition-transform duration-300 ease-in-out z-[103] md:hidden flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                className={`fixed top-0 right-0 h-screen w-[85%] max-w-[340px] bg-normal/95 backdrop-blur-lg border-l-[0.15rem] border-light shadow-2xl transform ease-in-out z-[103] md:hidden flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
                 role='dialog'
                 aria-modal='true'
                 aria-label='Mobile menu'
@@ -96,10 +96,10 @@ export default function MobileNav({ text }: MobileNavProps) {
                     <h2 className='text-xl font-semibold'>{text.menu}</h2>
                     <button
                         onClick={() => setIsMenuOpen(false)}
-                        className='p-2 rounded-full hover:bg-light hover:bg-opacity-10 transition-colors group'
+                        className='p-2 rounded-full hover:bg-light hover:bg-opacity-10 group'
                         aria-label='Close menu'
                     >
-                        <X className='size-5 text-almostbright transition-colors' />
+                        <X className='size-5 text-almostbright' />
                     </button>
                 </div>
                 {/* Links */}
@@ -110,11 +110,11 @@ export default function MobileNav({ text }: MobileNavProps) {
                                 <Link
                                     href={link.href}
                                     tabIndex={isMenuOpen ? 0 : -1}
-                                    className={`block px-5 py-4 rounded-xl transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-400 ${link.active ? 'bg-darker border-[0.15rem] border-light shadow-md' : 'hover:bg-darker/50 hover:pl-7'}`}
+                                    className={`block px-5 py-4 rounded-xl group ${link.active ? 'bg-darker border-[0.15rem] border-light shadow-md' : 'hover:bg-darker/50 hover:pl-7'}`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     <div className='flex items-center justify-between'>
-                                        <span className={`font-medium transition-colors ${link.active ? 'text-bright' : 'text-almostbright group-hover:text-bright'}`}>{link.label}</span>
+                                        <span className={`font-medium ${link.active ? 'text-bright' : 'text-almostbright group-hover:text-bright'}`}>{link.label}</span>
                                         {link.active && (
                                             <div className={`w-2.5 h-2.5 rounded-full animate-pulse ${link.href === '/' ? 'bg-teal-500 shadow-lg shadow-teal-500/50' : link.href === '/projects' ? 'bg-cyan-500 shadow-lg shadow-cyan-500/50' : 'bg-blue-500 shadow-lg shadow-blue-500/50'}`}/>
                                         )}

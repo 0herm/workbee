@@ -19,8 +19,6 @@ sub vcl_hash {
 }
 
 sub vcl_backend_response {
-    unset beresp.http.Cache-Control;
-    set beresp.http.Cache-Control = "workbee-cache, max-age=86400";
     set beresp.ttl = 86400s;
     return (deliver);
 }

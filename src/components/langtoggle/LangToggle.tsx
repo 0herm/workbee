@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { getCookie, setCookie } from '@utils/cookies'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { Globe } from 'lucide-react'
 
 export default function LangToggle() {
-    // const router = useRouter()
+    const router = useRouter()
     
     const [lang, setLang] = useState<'no' | 'en'>()
     const [jump, setJump] = useState(false)
@@ -24,7 +24,7 @@ export default function LangToggle() {
         setLang(newLang)
         setJump(true)
         setTimeout(() => setJump(false), 400)
-        window.location.reload()
+        router.refresh()
     }
 
     return(

@@ -1,4 +1,4 @@
-import LangToggle from '@components/langtoggle/LangToggle'
+import LangToggle from '@components/langtoggle/langToggle'
 import { CircleUser } from 'lucide-react'
 import Link from 'next/link'
 import no from '@dictionaries/navBar/no.json'
@@ -6,13 +6,9 @@ import en from '@dictionaries/navBar/en.json'
 import ThemeToggle from '@components/themetoggle/themeToggle'
 import { cookies } from 'next/headers'
 import MobileMenu from './mobileMenu'
+import NavBarAccent from './navAccent'
 
-type NavBarProps = {
-    path: string
-}
-
-export default async function NavBar({path}: NavBarProps) {
-    const page = path.split('/')[1]
+export default async function NavBar() {
     const lang = (await cookies()).get('lang')?.value || 'no'
     const text : NavBarDictionary = lang === 'no' ? no : en
 
@@ -28,36 +24,21 @@ export default async function NavBar({path}: NavBarProps) {
                     href='/'
                     className='relative flex items-center h-full'
                 >
-                    {page === '' &&
-                        <span
-                            className="absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full bg-teal-500/40 blur-md"
-                            aria-hidden="true"
-                        />
-                    }
+                    <NavBarAccent page='' color='bg-teal-500/40'/>
                     <h1 className="relative z-10">{text.links.about.title}</h1>
                 </Link>
                 <Link
                     href='projects'
-                    className='relative flex items-center h-full transition-shadow duration-300'
+                    className='relative flex items-center h-full'
                 >
-                    {page === 'projects' &&
-                        <span
-                            className="absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full bg-cyan-500/40 blur-md"
-                            aria-hidden="true"
-                        />
-                    }
+                    <NavBarAccent page='projects' color='bg-cyan-500/40'/>
                     <h1 className="relative z-10">{text.links.projects.title}</h1>
                 </Link>
                 <Link
                     href='skills'
-                    className='relative flex items-center h-full transition-shadow duration-300'
+                    className='relative flex items-center h-full'
                 >
-                    {page === 'skills' &&
-                        <span
-                            className="absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full bg-blue-500/40 blur-md"
-                            aria-hidden="true"
-                        />
-                    }
+                    <NavBarAccent page='skills' color='bg-blue-500/40'/>
                     <h1 className="relative z-10">{text.links.skills.title}</h1>
                 </Link>
             </div>
