@@ -2,7 +2,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-
 @theme {
     --color-darker: red;
     --color-dark: red;
@@ -43,14 +42,19 @@
     --color-bright: black;
 }
 
-* {
-    transition: background 0.4s, color 0.4s, fill 0.4s, stroke 0.4s, box-shadow 0.4s;
+
+@layer base { 
+    /* Performance issue phone? */
+    @media (min-width: 500px) {
+        * {
+            @apply transition-all duration-150;
+        }
+    }
 }
 
 body {
     color: var(--foreground);
     background: var(--color-dark);
-    transition: background 0.4s, color 0.4s;
 }
 
 @keyframes jump {

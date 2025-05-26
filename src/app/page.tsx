@@ -54,8 +54,8 @@ export default async function Home() {
                         </h3>
                         <div className="relative">
                             <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-blue-500/50 to-transparent"></div>
-                            {Object.values(text.work.jobs).map((job, index) => (
-                                <div key={index} className="relative pl-12 pb-10 group">
+                            {Object.entries(text.work.jobs).map(([key, job]) => (
+                                <div key={key} className="relative pl-12 pb-10 group">
                                     <div className="absolute left-2.5 w-3 h-3 bg-blue-500 rounded-full group-hover:scale-150 shadow-lg shadow-blue-500/50"></div>
                                     <div className="p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl hover:shadow-blue-500/10">
                                         <span className="text-xs font-medium text-blue-400 uppercase tracking-wider">
@@ -77,8 +77,8 @@ export default async function Home() {
                         </h3>
                         <div className="relative">
                             <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 via-purple-500/50 to-transparent"></div>
-                            {Object.values(text.education.degrees).map((degree, index) => (
-                                <div key={index} className="relative pl-12 pb-10 group">
+                            {Object.entries(text.education.degrees).map(([key, degree]) => (
+                                <div key={key} className="relative pl-12 pb-10 group">
                                     <div className="absolute left-2.5 w-3 h-3 bg-purple-500 rounded-full group-hover:scale-150 shadow-lg shadow-purple-500/50"></div>
                                     <div className="p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl hover:shadow-purple-500/10">
                                         <span className="text-xs font-medium text-purple-400 uppercase tracking-wider">
@@ -112,9 +112,9 @@ export default async function Home() {
                     </Link>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
-                    {Object.values(text.projects.projects).map((project, index) => (
+                    {Object.entries(text.projects.projects).map(([key, project]) => (
                         <div
-                            key={index}
+                            key={key}
                             className="group relative p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-green-500/10 hover:-translate-y-1"
                         >
                             <div className="flex items-start justify-between mb-4">
@@ -158,9 +158,9 @@ export default async function Home() {
                     </Link>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
-                    {Object.values(text.contributions.contributions).map((contribution, index) => (
+                    {Object.entries(text.contributions.contributions).map(([key, contribution]) => (
                         <div
-                            key={index}
+                            key={key}
                             className="group relative p-6 rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-1"
                         >
                             <div className="flex items-start justify-between mb-4">
@@ -177,7 +177,7 @@ export default async function Home() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <span>{text.projects.viewProject}</span>
+                                    <span>{text.contributions.viewProject}</span>
                                     <ExternalLink className="size-4" />
                                 </Link>
                             )}
