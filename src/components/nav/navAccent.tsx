@@ -10,7 +10,7 @@ export default function NavBarAccent({page,color}:{page:string,color:string}) {
             {currentPage === page &&
                 <span
                     className={`absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full ${color} blur-md`}
-                    aria-hidden="true"
+                    aria-hidden='true'
                 />
             }
         </>

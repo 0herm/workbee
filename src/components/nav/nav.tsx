@@ -25,21 +25,21 @@ export default async function NavBar() {
                     className='relative flex items-center h-full'
                 >
                     <NavBarAccent page='' color='bg-teal-500/40'/>
-                    <h1 className="relative z-10">{text.links.about.title}</h1>
+                    <h1 className='relative z-10'>{text.links.about.title}</h1>
                 </Link>
                 <Link
                     href='projects'
                     className='relative flex items-center h-full'
                 >
                     <NavBarAccent page='projects' color='bg-cyan-500/40'/>
-                    <h1 className="relative z-10">{text.links.projects.title}</h1>
+                    <h1 className='relative z-10'>{text.links.projects.title}</h1>
                 </Link>
                 <Link
                     href='skills'
                     className='relative flex items-center h-full'
                 >
                     <NavBarAccent page='skills' color='bg-blue-500/40'/>
-                    <h1 className="relative z-10">{text.links.skills.title}</h1>
+                    <h1 className='relative z-10'>{text.links.skills.title}</h1>
                 </Link>
             </div>
             <div className='flex flex-row items-center gap-[0.5rem] bg-darker p-[0.5rem] rounded-full border-[0.15rem] border-light'>

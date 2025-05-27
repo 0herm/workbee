@@ -68,6 +68,19 @@ type NavBarDictionary = {
     }
 }
 
+type ContactDictionary = {
+    title: string
+    name: string
+    namePlaceholder: string
+    email: string
+    emailPlaceholder: string
+    subject: string
+    subjectPlaceholder: string
+    message: string
+    messagePlaceholder: string
+    submit: string
+}
+
 type FooterDictionary = {
     copyright: string
 }
