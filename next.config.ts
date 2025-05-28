@@ -1,7 +1,9 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-    /* config options here */
+    env: {
+        version: process.env.npm_package_version,
+    },
 }
 
 export default nextConfig

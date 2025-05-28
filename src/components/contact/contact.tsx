@@ -27,7 +27,7 @@ export default async function Contact() {
     const text: ContactDictionary = lang === 'no' ? no : en
 
     return (
-        <div className='max-w-3xl mx-auto px-[1rem] sm:px-[1.5rem] py-[2rem]'>
+        <>
             <h2 className='text-xl sm:text-2xl md:text-3xl font-bold mb-[2rem] flex items-center gap-[0.75rem]'>
                 <span className='p-[0.375rem] sm:p-[0.5rem] bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg flex-shrink-0'>
                     <Mail className='w-[1.5rem] h-[1.5rem] text-blue-400' />
@@ -35,7 +35,7 @@ export default async function Contact() {
                 <span className='break-words'>{text.title}</span>
             </h2>
             
-            <Form action={contactAction} className='space-y-[1.5rem] md:space-y-[2rem]'>
+            <Form action={contactAction} className='space-y-[1.5rem] md:space-y-[2rem] w-full'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-[1.5rem]'>
                     <div>
                         <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.name}</label>
@@ -82,7 +82,7 @@ export default async function Contact() {
                     />
                 </div>
                 
-                <div className='pt-[0.5rem]'>
+                <div className='pt-[0.5rem] flex justify-center'>
                     <button 
                         type='submit'
                         className='group inline-flex items-center justify-center gap-[0.5rem] px-[1.25rem] sm:px-[1.5rem] py-[0.625rem] sm:py-[0.75rem] bg-gradient-to-r from-blue-800/80 to-purple-800/80 text-white rounded-lg font-medium hover:from-blue-700/80 hover:to-purple-700/80 w-full sm:w-auto'
@@ -92,6 +92,6 @@ export default async function Contact() {
                     </button>
                 </div>
             </Form>
-        </div>
+        </>
     )
 }

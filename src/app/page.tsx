@@ -186,8 +186,12 @@ export default async function Home() {
                     ))}
                 </div>
             </div>
-
-            <Contact />
+            
+            <div className='w-full flex justify-center'>
+                <div className='flex flex-col items-center w-full px-[2rem] sm:px-[4rem] lg:px-[8rem] max-w-[50rem] py-[2rem]'>
+                    <Contact />
+                </div>
+            </div>
         </div>
     )
 }
