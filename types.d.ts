@@ -84,3 +84,18 @@ type ContactDictionary = {
 type FooterDictionary = {
     copyright: string
 }
+
+type SkillsDictionary = {
+    title: string
+    categories: {
+        [key: string]: SkillCategory
+    }
+}
+
+type SkillCategory = {
+    title: string
+    categories: Array<{
+        title: string
+        items: string[]
+    }>
+}
