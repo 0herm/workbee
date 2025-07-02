@@ -24,30 +24,6 @@ type LandingPageDictionary = {
             }
         }
     }
-    projects: {
-        title: string
-        viewProject: string
-        viewMore: string
-        projects: {
-            [key: string]: {
-                name: string
-                description: string
-                link?: string
-            }
-        }
-    }
-    contributions: {
-        title: string
-        viewProject: string
-        viewMore: string
-        contributions: {
-            [key: string]: {
-                name: string
-                description: string
-                link?: string
-            }
-        }
-    }
 }
 
 type NavBarDictionary = {
@@ -84,6 +60,35 @@ type ContactDictionary = {
 type FooterDictionary = {
     copyright: string
 }
+
+type ProjectsDictionary = {
+    projects: {
+        title: string
+        viewProject: string
+        viewMore: string
+        projects: {
+            [key: string]: {
+                name: string
+                description: string
+                link?: string
+                images?: string[]
+            }
+        }
+    }
+    contributions: {
+        title: string
+        viewProject: string
+        viewMore: string
+        contributions: {
+            [key: string]: {
+                name: string
+                description: string
+                link?: string
+            }
+        }
+    }
+}
+
 
 type SkillsDictionary = {
     title: string
