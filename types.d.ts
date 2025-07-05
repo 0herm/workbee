@@ -9,7 +9,7 @@ type LandingPageDictionary = {
         degrees: {
             [key: string]: {
                 title: string
-                degree: string
+                subtitle: string
                 period: string
             }
         }
@@ -18,8 +18,8 @@ type LandingPageDictionary = {
         title: string
         jobs: {
             [key: string]: {
-                position: string
-                company: string
+                title: string
+                subtitle: string
                 period: string
             }
         }

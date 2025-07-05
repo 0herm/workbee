@@ -7,8 +7,10 @@ import enProjects from '@dictionaries/projects/en.json'
 import noPersonal from '@dictionaries/personal/no.json'
 import enPersonal from '@dictionaries/personal/en.json'
 import { cookies } from 'next/headers'
-import { ArrowRight, Briefcase, Code2, ExternalLink, GitBranch } from 'lucide-react'
+import { Briefcase } from 'lucide-react'
 import Contact from '@components/contact/contact'
+import ProjectSection from '@components/section/projectsection'
+import Timeline from '@components/timeline/timeline'
 
 export default async function Home() {
     const lang = (await cookies()).get('lang')?.value || 'no'
@@ -23,24 +25,20 @@ export default async function Home() {
                 <p className='font-light text-almostbright max-w-[40rem]'>{text.description}</p>
                 <div className='flex flex-row gap-[0.75rem]'>
 
-                    {/* Github */}
                     <Link href={textPersonal.links.github} className='group'>
                         <SiGithub className='fill-almostbright size-[1.25rem] group-hover:fill-bright' />
                     </Link>
 
-                    {/* Gitlab */}
                     <Link href={textPersonal.links.gitlab} className='group'>
                         <SiGitlab className='fill-almostbright size-[1.25rem] group-hover:fill-[#FC6D26]' />
                     </Link>
 
-                    {/* LinkedIn */}
                     <Link href={textPersonal.links.linkedIn} className='group'>
                         <SiLinkedin className='fill-almostbright size-[1.25rem] group-hover:fill-[#0a66c2]' />
                     </Link>
                 </div>
             </div>
 
-            {/* Experience Section */}
             <div>
                 <h2 className='text-xl sm:text-3xl font-bold mb-[3rem] flex items-center gap-[0.75rem]'>
                     <span className='p-[0.5rem] bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg'>
@@ -49,148 +47,14 @@ export default async function Home() {
                     {text.experience}
                 </h2>
                 <div className='grid md:grid-cols-2 gap-[3rem]'>
-
-                    {/* Work Timeline */}
-                    <div>
-                        <h3 className='text-lg sm:text-xl font-semibold mb-[2rem] flex items-center gap-[0.5rem]'>
-                            {text.work.title}
-                            <div className='h-px flex-1 bg-gradient-to-r from-blue-500/50 to-transparent'></div>
-                        </h3>
-                        <div className='relative'>
-                            <div className='absolute left-[1rem] top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-blue-500/50 to-transparent'></div>
-                            {Object.entries(text.work.jobs).map(([key, job]) => (
-                                <div key={key} className='relative pl-[3rem] pb-[2.5rem] group'>
-                                    <div className='absolute left-[0.625rem] w-[0.75rem] h-[0.75rem] bg-blue-500 rounded-full group-hover:scale-150 shadow-lg shadow-blue-500/50'></div>
-                                    <div className='p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl hover:shadow-blue-500/10'>
-                                        <span className='text-xs font-medium text-blue-400 uppercase tracking-wider'>
-                                            {job.period}
-                                        </span>
-                                        <h4 className='text-lg font-semibold mt-[0.5rem] mb-[0.25rem]'>{job.company}</h4>
-                                        <p className='text-sm sm:text-base text-almostbright'>{job.position}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Education Timeline */}
-                    <div>
-                        <h3 className='text-lg sm:text-xl font-semibold mb-[2rem] flex items-center gap-[0.5rem]'>
-                            {text.education.title}
-                            <div className='h-px flex-1 bg-gradient-to-r from-purple-500/50 to-transparent'></div>
-                        </h3>
-                        <div className='relative'>
-                            <div className='absolute left-[1rem] top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 via-purple-500/50 to-transparent'></div>
-                            {Object.entries(text.education.degrees).map(([key, degree]) => (
-                                <div key={key} className='relative pl-[3rem] pb-[2.5rem] group'>
-                                    <div className='absolute left-[0.625rem] w-[0.75rem] h-[0.75rem] bg-purple-500 rounded-full group-hover:scale-150 shadow-lg shadow-purple-500/50'></div>
-                                    <div className='p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl hover:shadow-purple-500/10'>
-                                        <span className='text-xs font-medium text-purple-400 uppercase tracking-wider'>
-                                            {degree.period}
-                                        </span>
-                                        <h4 className='text-lg font-semibold mt-[0.5rem] mb-[0.25rem]'>{degree.title}</h4>
-                                        <p className='text-sm sm:text-base text-almostbright'>{degree.degree}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <Timeline title={text.work.title} items={text.work.jobs} color='blue' />
+                    <Timeline title={text.education.title} items={text.education.degrees} color='purple' />
                 </div>
             </div>
 
-            {/* Projects Section */}
-            <div>
-                <div className='flex items-center justify-between mb-[3rem]'>
-                    <h2 className='text-xl sm:text-3xl font-bold flex items-center gap-[0.75rem]'>
-                        <span className='p-[0.5rem] bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-lg'>
-                            <Code2 className='size-[1.5rem] text-green-600' />
-                        </span>
-                        {textProjects.projects.title}
-                    </h2>
-                    <Link
-                        href='/projects#projects'
-                        className='group flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] rounded-lg border bg-darker border-extralight hover:border-superlight'
-                    >
-                        <span className='text-sm font-medium'>{textProjects.projects.viewMore}</span>
-                        <ArrowRight className='size-[1rem] group-hover:translate-x-[0.25rem]' />
-                    </Link>
-                </div>
-                <div className='grid md:grid-cols-2 gap-[1.5rem]'>
-                    {Object.entries(textProjects.projects.projects).map(([key, project]) => (
-                        <div
-                            key={key}
-                            className='group relative p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-green-500/10 hover:-translate-y-[0.25rem]'
-                        >
-                            <Link href={`/projects#${key}`} className='absolute inset-0' />
-                            <div className='flex items-start justify-between mb-[1rem]'>
-                                <h3 className='text-lg sm:text-xl font-semibold group-hover:text-green-600'>
-                                    {project.name}
-                                </h3>
-                                <Code2 className='size-[1.25rem] text-superlight group-hover:text-green-600' />
-                            </div>
-                            <p className='text-sm sm:text-base text-almostbright mb-[1.5rem] line-clamp-3'>{project.description}</p>
-                            {project.link && (
-                                <Link
-                                    href={project.link}
-                                    className='relative z-2 inline-flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] bg-gradient-to-r from-green-800/80 to-cyan-800/80 text-white rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-green-500/25'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                >
-                                    <span>{textProjects.projects.viewProject}</span>
-                                    <ExternalLink className='size-[1rem]' />
-                                </Link>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <ProjectSection text={textProjects} type='personal' />
+            <ProjectSection text={textProjects} type='contribution' />
 
-            {/* Contributions Section */}
-            <div>
-                <div className='flex items-center justify-between mb-[3rem]'>
-                    <h2 className='text-xl sm:text-3xl font-bold flex items-center gap-[0.75rem]'>
-                        <span className='p-[0.5rem] bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg'>
-                            <GitBranch className='size-[1.5rem] text-purple-400' />
-                        </span>
-                        {textProjects.contributions.title}
-                    </h2>
-                    <Link
-                        href='/projects#contributions'
-                        className='group flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] rounded-lg border bg-darker border-extralight hover:border-superlight'
-                    >
-                        <span className='text-sm font-medium'>{textProjects.contributions.viewMore}</span>
-                        <ArrowRight className='size-[1rem] group-hover:translate-x-[0.25rem]' />
-                    </Link>
-                </div>
-                <div className='grid md:grid-cols-2 gap-[1.5rem]'>
-                    {Object.entries(textProjects.contributions.contributions).map(([key, contribution]) => (
-                        <div
-                            key={key}
-                            className='group relative p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-[0.25rem]'
-                        >
-                            <div className='flex items-start justify-between mb-[1rem]'>
-                                <h3 className='text-lg sm:text-xl font-semibold group-hover:text-purple-400'>
-                                    {contribution.name}
-                                </h3>
-                                <GitBranch className='size-[1.25rem] text-superlight group-hover:text-purple-400' />
-                            </div>
-                            <p className='text-sm sm:text-base text-almostbright mb-[1.5rem] line-clamp-3'>{contribution.description}</p>
-                            {contribution.link && (
-                                <Link
-                                    href={contribution.link}
-                                    className='inline-flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] bg-gradient-to-r from-purple-800/80 to-pink-800/80 text-white rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-purple-500/25'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                >
-                                    <span>{textProjects.contributions.viewProject}</span>
-                                    <ExternalLink className='size-[1rem]' />
-                                </Link>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-            
             <div className='w-full flex justify-center'>
                 <div className='flex flex-col items-center w-full px-[2rem] sm:px-[4rem] lg:px-[8rem] max-w-[50rem] py-[2rem]'>
                     <Contact />
