@@ -35,7 +35,7 @@ export default function ProjectSection({text, type}: {text: ProjectsDictionary, 
                 </Link>
             </div>
             <div className='grid md:grid-cols-2 gap-[1.5rem]'>
-                {Object.entries(items).map(([key, item]) => (
+                {Object.entries(items).slice(0, 2).map(([key, item]) => (
                     <div
                         key={key}
                         className={`group relative p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl ${hoverShadow} hover:-translate-y-[0.25rem]`}

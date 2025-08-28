@@ -1,30 +1,33 @@
-import { cookies } from 'next/headers'
+'use client'
+import React, { useState } from 'react'
 import en from '@dictionaries/contact/en.json'
 import no from '@dictionaries/contact/no.json'
 import enPersonal from '@dictionaries/personal/en.json'
-import noPersonal from '@dictionaries/personal/no.json'
-import Form from 'next/form'
-import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { Mail, Send } from 'lucide-react'
 
-async function contactAction(formData: FormData) {
-    'use server'
-    const lang = (await cookies()).get('lang')?.value || 'no'
-    const text = lang === 'no' ? noPersonal : enPersonal
+export default function Contact() {
+    // client-side cookie helper
+    const getCookie = (name: string): string | undefined => {
+        if (typeof document === 'undefined') return undefined
+        const match = document.cookie.split('; ').find((row) => row.startsWith(name + '='))
+        return match ? decodeURIComponent(match.split('=')[1]) : undefined
+    }
 
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const subject = formData.get('subject') as string
-    const message = formData.get('message') as string
-    
-    const mailtoUrl = `mailto:${text.mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`${name} <${email}>\n\n${message}`)}`
+    const lang = getCookie('lang') || 'no'
+    const text = lang === 'no' ? no : en
 
-    redirect(mailtoUrl)
-}
+    // form state (client-side)
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [subject, setSubject] = useState('')
+    const [message, setMessage] = useState('')
 
-export default async function Contact() {
-    const lang = (await cookies()).get('lang')?.value || 'no'
-    const text: ContactDictionary = lang === 'no' ? no : en
+    const isValid = Boolean(name.trim() && email.trim() && subject.trim() && message.trim())
+
+    const mailtoUrl = isValid
+        ? `mailto:${enPersonal.mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`${name} <${email}>\n\n${message}`)}`
+        : '#'
 
     return (
         <>
@@ -34,64 +37,81 @@ export default async function Contact() {
                 </span>
                 <span className='break-words'>{text.title}</span>
             </h2>
-            
-            <Form action={contactAction} className='space-y-[1.5rem] md:space-y-[2rem] w-full'>
+
+            {/* client-side form (no server action) */}
+            <div className='space-y-[1.5rem] md:space-y-[2rem] w-full'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-[1.5rem]'>
                     <div>
                         <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.name}</label>
-                        <input 
-                            placeholder={text.namePlaceholder} 
-                            type='text' 
-                            name='name' 
-                            required 
+                        <input
+                            placeholder={text.namePlaceholder}
+                            type='text'
+                            name='name'
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50'
                         />
                     </div>
-                    
+
                     <div>
                         <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.email}</label>
-                        <input 
-                            placeholder={text.emailPlaceholder} 
-                            type='email' 
-                            name='email' 
-                            required 
+                        <input
+                            placeholder={text.emailPlaceholder}
+                            type='email'
+                            name='email'
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50'
                         />
                     </div>
                 </div>
-                
+
                 <div>
                     <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.subject}</label>
-                    <input 
-                        placeholder={text.subjectPlaceholder} 
-                        type='text' 
-                        name='subject' 
-                        required 
+                    <input
+                        placeholder={text.subjectPlaceholder}
+                        type='text'
+                        name='subject'
+                        required
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
                         className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50'
                     />
                 </div>
-                
+
                 <div>
                     <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.message}</label>
-                    <textarea 
-                        placeholder={text.messagePlaceholder} 
-                        name='message' 
-                        required 
+                    <textarea
+                        placeholder={text.messagePlaceholder}
+                        name='message'
+                        required
                         rows={6}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50 resize-none'
                     />
                 </div>
-                
+
                 <div className='pt-[0.5rem] flex justify-center'>
-                    <button 
-                        type='submit'
-                        className='group inline-flex items-center justify-center gap-[0.5rem] px-[1.25rem] sm:px-[1.5rem] py-[0.625rem] sm:py-[0.75rem] bg-gradient-to-r from-blue-800/80 to-purple-800/80 text-white rounded-lg font-medium hover:from-blue-700/80 hover:to-purple-700/80 w-full sm:w-auto'
-                    >
-                        {text.submit}
-                        <Send className='w-[1.25rem] h-[1.25rem] group-hover:translate-x-1' />
-                    </button>
+                    {isValid ? (
+                        <Link href={mailtoUrl} className='group inline-flex items-center justify-center gap-[0.5rem] px-[1.25rem] sm:px-[1.5rem] py-[0.625rem] sm:py-[0.75rem] bg-gradient-to-r from-blue-800/80 to-purple-800/80 text-white rounded-lg font-medium hover:from-blue-700/80 hover:to-purple-700/80 w-full sm:w-auto'>
+                            {text.submit}
+                            <Send className='w-[1.25rem] h-[1.25rem] group-hover:translate-x-1' />
+                        </Link>
+                    ) : (
+                        <button
+                            type='button'
+                            disabled
+                            className='group inline-flex items-center justify-center gap-[0.5rem] px-[1.25rem] sm:px-[1.5rem] py-[0.625rem] sm:py-[0.75rem] bg-gradient-to-r from-blue-800/40 to-purple-800/40 text-white rounded-lg font-medium w-full sm:w-auto opacity-50 cursor-not-allowed'
+                        >
+                            {text.submit}
+                            <Send className='w-[1.25rem] h-[1.25rem]' />
+                        </button>
+                    )}
                 </div>
-            </Form>
+            </div>
         </>
     )
 }

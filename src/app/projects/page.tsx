@@ -11,8 +11,8 @@ export default async function Page() {
 
     return (
         <div className='p-[1.5rem] sm:p-[4rem] flex flex-col gap-[3rem]'>
-            <div id={'projects'} className='flex flex-col scroll-mt-[6rem] gap-[1rem] mb-[2rem]'>
-                <h1 className='text-4xl font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text'>
+            <div id='projects' className='flex flex-col items-center scroll-mt-[6rem] gap-[1rem] mt-[2rem]'>
+                <h1 className='w-fit text-4xl font-bold bg-gradient-to-r from-green-500 to-teal-500 text-transparent bg-clip-text'>
                     {text.projects.title}
                 </h1>
             </div>
@@ -50,6 +50,42 @@ export default async function Page() {
                                     rel='noopener noreferrer'
                                 >
                                     <span>{text.projects.viewProject}</span>
+                                    <ExternalLink className='size-[1rem]' />
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+
+            <div id='contributions' className='flex flex-col items-center scroll-mt-[6rem] gap-[1rem] mt-[2rem]'>
+                <h1 className='text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text'>
+                    {text.contributions.title}
+                </h1>
+            </div>
+
+            <div className='flex flex-col gap-[2rem] max-w-4xl mx-auto w-full'>
+                {Object.entries(text.contributions.contributions).map(([key, contrib]) => (
+                    <div
+                        key={key}
+                        id={`contrib-${key}`}
+                        className='group scroll-mt-[6rem] relative flex flex-col p-[1rem] sm:p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-150 w-full'
+                    >
+                        <div className='flex items-start justify-between mb-[1rem]'>
+                            <h3 className='text-xl sm:text-2xl font-semibold group-hover:text-purple-400 transition-colors'>
+                                {contrib.name}
+                            </h3>
+                        </div>
+                        <p className='text-base sm:text-lg text-almostbright mb-[1rem]'>{contrib.description}</p>
+                        {contrib.link && (
+                            <div className='mt-auto'>
+                                <Link
+                                    href={contrib.link}
+                                    className='inline-flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] bg-gradient-to-r from-purple-700/70 to-pink-700/70 text-white rounded-lg font-medium text-sm hover:from-purple-600/70 hover:to-pink-600/70 hover:shadow-lg hover:shadow-purple-500/25 transition-all'
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                >
+                                    <span>{text.contributions.viewProject}</span>
                                     <ExternalLink className='size-[1rem]' />
                                 </Link>
                             </div>
