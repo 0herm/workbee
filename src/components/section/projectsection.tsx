@@ -40,7 +40,7 @@ export default function ProjectSection({text, type}: {text: ProjectsDictionary, 
                         key={key}
                         className={`group relative p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl ${hoverShadow} hover:-translate-y-[0.25rem]`}
                     >
-                        {!isContribution && <Link href={`/projects#${key}`} className='absolute inset-0' />}
+                        <Link href={`/projects#${hrefPrefix}-${key}`} className='absolute inset-0' />
                         <div className='flex items-start justify-between mb-[1rem]'>
                             <h3 className={`text-lg sm:text-xl font-semibold ${hoverTextColor}`}>
                                 {item.name}
