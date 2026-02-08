@@ -9,7 +9,12 @@ export default function NavBarAccent({page,color}:{page:string,color:string}) {
         <>
             {currentPage === page &&
                 <span
-                    className={`absolute left-1/2 -translate-x-1/2 z-0 w-16 h-8 rounded-full ${color} blur-md`}
+                    className={`
+                      absolute left-1/2 z-0 h-8 w-16 -translate-x-1/2
+                      rounded-full
+                      ${color}
+                      blur-md
+                    `}
                     aria-hidden='true'
                 />
             }

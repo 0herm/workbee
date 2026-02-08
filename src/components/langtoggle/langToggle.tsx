@@ -28,8 +28,14 @@ export default function LangToggle() {
     }
 
     return(
-        <button value={lang} onClick={handleClick} className='group cursor-pointer'>
-            <Globe className={`group-hover:stroke-softbright size-[1.75rem] ${jump ? 'animate-[jump_0.4s_1]' : ''}`}/>
+        <button value={lang} onClick={handleClick} className='
+          group cursor-pointer
+        '>
+            <Globe className={`
+              size-7
+              group-hover:stroke-softbright
+              ${jump ? 'animate-[jump_0.4s_1]' : ''}
+            `}/>
         </button>
     )
 }

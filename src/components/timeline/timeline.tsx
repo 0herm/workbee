@@ -12,20 +12,16 @@ type TimelineProps = {
 
 const colorClasses = {
     blue: {
-        gradient: 'from-blue-500/50',
-        line: 'from-blue-500/50 via-blue-500/50',
-        dot: 'bg-blue-500',
-        dotShadow: 'shadow-blue-500/50',
+        line: 'border-blue-500/30',
+        dot: 'text-blue-500',
         text: 'text-blue-400',
-        cardShadow: 'hover:shadow-blue-500/10'
+        border: 'hover:border-blue-500'
     },
     purple: {
-        gradient: 'from-purple-500/50',
-        line: 'from-purple-500/50 via-purple-500/50',
-        dot: 'bg-purple-500',
-        dotShadow: 'shadow-purple-500/50',
+        line: 'border-purple-500/30',
+        dot: 'text-purple-500',
         text: 'text-purple-400',
-        cardShadow: 'hover:shadow-purple-500/10'
+        border: 'hover:border-purple-500'
     }
 }
 
@@ -34,21 +30,49 @@ export default function Timeline({ title, items, color }: TimelineProps) {
 
     return (
         <div>
-            <h3 className='text-lg sm:text-xl font-semibold mb-[2rem] flex items-center gap-[0.5rem]'>
+            <h3 className='
+              mb-8 flex items-center gap-2 text-lg font-semibold
+              sm:text-xl
+            '>
+                <span className={`
+                  ${colors.text}
+                `}>&gt;</span>
                 {title}
-                <div className={`h-px flex-1 bg-gradient-to-r ${colors.gradient} to-transparent`}></div>
+                <div className={`
+                  h-px flex-1 border-b border-dashed
+                  ${colors.line}
+                  opacity-30
+                `}></div>
             </h3>
             <div className='relative'>
-                <div className={`absolute left-[1rem] top-0 bottom-0 w-0.5 bg-gradient-to-b ${colors.line} to-transparent`}></div>
+                <div className={`
+                  absolute inset-y-0 left-[1.35rem] w-px border-l border-dashed
+                  ${colors.line}
+                `}></div>
                 {Object.entries(items).map(([key, item]) => (
-                    <div key={key} className='relative pl-[3rem] pb-[2.5rem] group'>
-                        <div className={`absolute left-[0.625rem] w-[0.75rem] h-[0.75rem] ${colors.dot} rounded-full group-hover:scale-150 shadow-lg ${colors.dotShadow}`}></div>
-                        <div className={`p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-xl ${colors.cardShadow}`}>
-                            <span className={`text-xs font-medium ${colors.text} uppercase tracking-wider`}>
-                                {item.period}
+                    <div key={key} className='group relative pb-10 pl-12'>
+                        <div className={`
+                          absolute left-[0.35rem] w-8 text-center font-mono
+                          ${colors.dot}
+                          z-10 rounded-full bg-dark text-nowrap
+                        `}>[+]</div>
+                        <div className={`
+                          border border-extralight bg-dark p-6
+                          ${colors.border}
+                          rounded-xl shadow-none transition-none
+                        `}>
+                            <span className={`
+                              font-mono text-xs
+                              ${colors.text}
+                              tracking-wider uppercase
+                            `}>
+                                [{item.period}]
                             </span>
-                            <h4 className='text-lg font-semibold mt-[0.5rem] mb-[0.25rem]'>{item.title}</h4>
-                            <p className='text-sm sm:text-base text-almostbright'>{item.subtitle}</p>
+                            <h4 className='mt-2 mb-1 text-lg font-semibold'>{item.title}</h4>
+                            <p className='
+                              text-sm text-almostbright
+                              sm:text-base
+                            '>{item.subtitle}</p>
                         </div>
                     </div>
                 ))}

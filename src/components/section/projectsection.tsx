@@ -12,51 +12,94 @@ export default function ProjectSection({text, type}: {text: ProjectsDictionary, 
     const iconColor = isContribution ? 'text-purple-400' : 'text-green-600'
     const gradientFrom = isContribution ? 'from-purple-500/20' : 'from-green-500/20'
     const gradientTo = isContribution ? 'to-pink-500/20' : 'to-blue-500/20'
-    const hoverShadow = isContribution ? 'hover:shadow-purple-500/10' : 'hover:shadow-green-500/10'
-    const hoverTextColor = isContribution ? 'group-hover:text-purple-400' : 'group-hover:text-green-600'
-    const buttonGradient = isContribution ? 'from-purple-800/80 to-pink-800/80' : 'from-green-800/80 to-cyan-800/80'
-    const buttonShadow = isContribution ? 'hover:shadow-purple-500/25' : 'hover:shadow-green-500/25'
+    const themeColor = isContribution ? 'text-purple-400' : 'text-green-500'
+    const hoverBorder = isContribution ? 'hover:border-purple-500' : 'hover:border-green-500'
 
     return (
         <div>
-            <div className='flex items-center justify-between mb-[3rem]'>
-                <h2 className='text-xl sm:text-3xl font-bold flex items-center gap-[0.75rem]'>
-                    <span className={`p-[0.5rem] bg-gradient-to-br ${gradientFrom} ${gradientTo} rounded-lg`}>
-                        <IconComponent className={`size-[1.5rem] ${iconColor}`} />
+            <div className='mb-12 flex items-center justify-between'>
+                <h2 className='
+                  flex items-center gap-3 text-xl font-bold
+                  sm:text-3xl
+                '>
+                    <span className={`
+                      bg-linear-to-br p-2
+                      ${gradientFrom}
+                      ${gradientTo}
+                      rounded-lg
+                    `}>
+                        <IconComponent className={`
+                          size-6
+                          ${iconColor}
+                        `} />
                     </span>
                     {data.title}
                 </h2>
                 <Link
                     href={`/projects#${hrefPrefix}`}
-                    className='group flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] rounded-lg border bg-darker border-extralight hover:border-superlight'
+                    className='
+                      group flex items-center gap-2 rounded-lg border
+                      border-extralight bg-darker px-4 py-2
+                      hover:border-superlight
+                    '
                 >
-                    <span className='text-sm font-medium'>{data.viewMore}</span>
-                    <ArrowRight className='size-[1rem] group-hover:translate-x-[0.25rem]' />
+                    <span className='text-sm font-medium'>./{data.viewMore}</span>
+                    <ArrowRight className='
+                      size-4
+                      group-hover:translate-x-1
+                    ' />
                 </Link>
             </div>
-            <div className='grid md:grid-cols-2 gap-[1.5rem]'>
+            <div className='
+              grid gap-6
+              md:grid-cols-2
+            '>
                 {Object.entries(items).slice(0, 2).map(([key, item]) => (
                     <div
                         key={key}
-                        className={`group relative p-[1.5rem] rounded-xl border bg-dark border-extralight hover:border-superlight shadow-sm hover:shadow-2xl ${hoverShadow} hover:-translate-y-[0.25rem]`}
+                        className={`
+                          group relative border border-extralight bg-dark p-6
+                          ${hoverBorder}
+                          rounded-xl transition-colors duration-0
+                          hover:bg-darker
+                        `}
                     >
-                        <Link href={`/projects#${hrefPrefix}-${key}`} className='absolute inset-0' />
-                        <div className='flex items-start justify-between mb-[1rem]'>
-                            <h3 className={`text-lg sm:text-xl font-semibold ${hoverTextColor}`}>
+                        <Link href={`/projects#${hrefPrefix}-${key}`} className='
+                          absolute inset-0
+                        ' />
+                        <div className='mb-4 flex items-start justify-between'>
+                            <h3 className={`
+                              text-lg font-semibold
+                              sm:text-xl
+                              ${themeColor}
+                            `}>
                                 {item.name}
                             </h3>
-                            <IconComponent className={`size-[1.25rem] text-superlight ${hoverTextColor}`} />
+                            <IconComponent className='
+                              size-5 text-superlight
+                              group-hover:text-bright
+                            ' />
                         </div>
-                        <p className='text-sm sm:text-base text-almostbright mb-[1.5rem] line-clamp-3'>{item.description}</p>
+                        <p className='
+                          mb-6 line-clamp-3 font-mono text-sm text-almostbright
+                          sm:text-base
+                        '>{item.description}</p>
                         {item.link && (
                             <Link
                                 href={item.link}
-                                className={`${!isContribution ? 'relative z-2' : ''} inline-flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem] bg-gradient-to-r ${buttonGradient} text-white rounded-lg font-medium text-sm hover:shadow-lg ${buttonShadow}`}
+                                className={`
+                                  ${!isContribution ? 'relative z-2' : ''}
+                                  inline-flex items-center gap-2 rounded-lg
+                                  border border-extralight bg-darker px-4 py-2
+                                  font-mono text-sm text-almostbright
+                                  transition-colors
+                                  hover:border-bright hover:text-bright
+                                `}
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >
-                                <span>{data.viewProject}</span>
-                                <ExternalLink className='size-[1rem]' />
+                                <span>[{data.viewProject}]</span>
+                                <ExternalLink className='size-4' />
                             </Link>
                         )}
                     </div>

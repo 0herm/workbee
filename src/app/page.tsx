@@ -19,34 +19,63 @@ export default async function Home() {
     const textPersonal = lang === 'no' ? noPersonal : enPersonal
 
     return (
-        <div className='p-[1.5rem] sm:p-[4rem] flex flex-col gap-[5rem]'>
-            <div className='flex flex-col gap-[1rem]'>
-                <h1 className='text-4xl font-bold max-w-[30rem]'>{text.title}</h1>
-                <p className='font-light text-almostbright max-w-[40rem]'>{text.description}</p>
-                <div className='flex flex-row gap-[0.75rem]'>
+        <div className='
+          flex flex-col gap-20 p-6
+          sm:p-16
+        '>
+            <div className='flex flex-col gap-4'>
+                <div className="flex flex-col gap-1">
+                    <span className="mb-2 text-sm text-bright opacity-50">portfolio@nixos:~$ ./init.sh</span>
+                    <h1 className='max-w-120 text-4xl font-bold'>
+                        {text.title}<span className="animate-cursor text-bright">_</span>
+                    </h1>
+                </div>
+                <p className='
+                  max-w-160 border-l-2 border-extralight py-1 pl-4 font-light
+                  text-almostbright
+                '>{text.description}</p>
+                <div className='mt-2 flex flex-row gap-3'>
 
                     <Link href={textPersonal.links.github} className='group'>
-                        <SiGithub className='fill-almostbright size-[1.25rem] group-hover:fill-bright' />
+                        <SiGithub className='
+                          size-5 fill-almostbright
+                          group-hover:fill-bright
+                        ' />
                     </Link>
 
                     <Link href={textPersonal.links.gitlab} className='group'>
-                        <SiGitlab className='fill-almostbright size-[1.25rem] group-hover:fill-[#FC6D26]' />
+                        <SiGitlab className='
+                          size-5 fill-almostbright
+                          group-hover:fill-[#FC6D26]
+                        ' />
                     </Link>
 
                     <Link href={textPersonal.links.linkedIn} className='group'>
-                        <SiLinkedin className='fill-almostbright size-[1.25rem] group-hover:fill-[#0a66c2]' />
+                        <SiLinkedin className='
+                          size-5 fill-almostbright
+                          group-hover:fill-[#0a66c2]
+                        ' />
                     </Link>
                 </div>
             </div>
 
             <div>
-                <h2 className='text-xl sm:text-3xl font-bold mb-[3rem] flex items-center gap-[0.75rem]'>
-                    <span className='p-[0.5rem] bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg'>
-                        <Briefcase className='size-[1.5rem] text-blue-400' />
+                <h2 className='
+                  mb-12 flex items-center gap-3 text-xl font-bold
+                  sm:text-3xl
+                '>
+                    <span className='
+                      rounded-lg bg-linear-to-br from-blue-500/20
+                      to-purple-500/20 p-2
+                    '>
+                        <Briefcase className='size-6 text-blue-400' />
                     </span>
                     {text.experience}
                 </h2>
-                <div className='grid md:grid-cols-2 gap-[3rem]'>
+                <div className='
+                  grid gap-12
+                  md:grid-cols-2
+                '>
                     <Timeline title={text.work.title} items={text.work.jobs} color='blue' />
                     <Timeline title={text.education.title} items={text.education.degrees} color='purple' />
                 </div>
@@ -55,8 +84,12 @@ export default async function Home() {
             <ProjectSection text={textProjects} type='personal' />
             <ProjectSection text={textProjects} type='contribution' />
 
-            <div className='w-full flex justify-center'>
-                <div className='flex flex-col items-center w-full px-[2rem] sm:px-[4rem] lg:px-[8rem] max-w-[50rem] py-[2rem]'>
+            <div className='flex w-full justify-center'>
+                <div className='
+                  flex w-full max-w-200 flex-col items-center p-8
+                  sm:px-16
+                  lg:px-32
+                '>
                     <Contact />
                 </div>
             </div>

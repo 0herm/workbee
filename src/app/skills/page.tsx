@@ -42,14 +42,29 @@ export default async function Page() {
     }
 
     return (
-        <div className='p-[1.5rem] sm:p-[4rem] flex flex-col gap-[3rem]'>
-            <div className='flex flex-col gap-[1rem] mb-[2rem]'>
-                <h1 className='text-4xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text'>
+        <div className='
+          flex flex-col gap-12 p-6
+          sm:p-16
+        '>
+            <div className='mb-8 flex flex-col gap-4'>
+                <h1 className='
+                  bg-linear-to-r from-indigo-500 to-purple-500 bg-clip-text
+                  text-4xl font-bold text-transparent
+                '>
                     {text.title}
                 </h1>
+                <div className='
+                  w-fit rounded-lg border border-red-500/50 bg-red-500/10 p-4
+                '>
+                    <p className='text-lg font-bold text-red-500'>{text.disclaimer}</p>
+                </div>
             </div>
             
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2rem]'>
+            <div className='
+              grid grid-cols-1 gap-8
+              md:grid-cols-2
+              lg:grid-cols-3
+            '>
                 {Object.entries(text.categories).map(([key, data]) => {
                     const style = categoryStyles[key as keyof typeof categoryStyles] || {
                         icon: <Code2 className='size-6 text-blue-500' />,
@@ -61,22 +76,42 @@ export default async function Page() {
                     return (
                         <div 
                             key={key} 
-                            className={`bg-dark p-[1.5rem] rounded-xl border border-extralight hover:border-superlight shadow-sm ${style.shadow} hover:shadow-xl transition-all`}
+                            className={`
+                              rounded-xl border border-extralight bg-dark p-6
+                              shadow-sm
+                              hover:border-superlight
+                              ${style.shadow}
+                              transition-all
+                              hover:shadow-xl
+                            `}
                         >
-                            <div className='flex items-center gap-3 mb-[1.5rem]'>
-                                <span className={`p-2 bg-gradient-to-br ${style.gradient} rounded-lg`}>
+                            <div className='mb-6 flex items-center gap-3'>
+                                <span className={`
+                                  bg-linear-to-br p-2
+                                  ${style.gradient}
+                                  rounded-lg
+                                `}>
                                     {style.icon}
                                 </span>
                                 <h2 className='text-2xl font-semibold'>{data.title}</h2>
                             </div>
 
                             {data.categories.map((category) => (
-                                <div key={category.title} className='mb-[1.5rem]'>
-                                    <h3 className={`text-xl font-medium mb-[0.75rem] text-${style.accent}-400`}>{category.title}</h3>
-                                    <ul className='space-y-[0.5rem]'>
+                                <div key={category.title} className='mb-6'>
+                                    <h3 className={`
+                                      mb-3 text-xl font-medium
+                                      text-${style.accent}-400
+                                    `}>{category.title}</h3>
+                                    <ul className='space-y-2'>
                                         {category.items.map((skill: string, index: number) => (
-                                            <li key={index} className='flex items-center text-almostbright'>
-                                                <span className={`mr-[0.5rem] text-${style.accent}-500`}>•</span>
+                                            <li key={index} className='
+                                              flex items-center
+                                              text-almostbright
+                                            '>
+                                                <span className={`
+                                                  mr-2
+                                                  text-${style.accent}-500
+                                                `}>•</span>
                                                 {skill}
                                             </li>
                                         ))}

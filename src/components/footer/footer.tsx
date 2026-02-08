@@ -14,30 +14,53 @@ export default async function Footer() {
     const version = process.env.version || '1.0.0'
 
     return (
-        <div className='flex flex-col sm:flex-row items-center p-[1.5rem] sm:p-[2rem] rounded-b-lg space-y-4'>
-            <div className='flex flex-col w-full gap-[0.75rem]'>
+        <div className='
+          flex flex-col items-center space-y-4 rounded-b-lg p-6
+          sm:flex-row sm:p-8
+        '>
+            <div className='flex w-full flex-col gap-3'>
                 {/* Copyright */}
-                <h1 className='text-sm sm:text-base text-almostbright text-center sm:text-left'>{text.copyright} © {year} {textPersonal.name}</h1>
+                <h1 className='
+                  text-center text-sm text-almostbright
+                  sm:text-left sm:text-base
+                '>{text.copyright} © {year} {textPersonal.name}</h1>
                 
                 {/* Social Links */}
-                <div className='flex justify-center sm:justify-start'>
-                    <div className='flex flex-row gap-[0.75rem]'>
+                <div className='
+                  flex justify-center
+                  sm:justify-start
+                '>
+                    <div className='flex flex-row gap-3'>
                         <Link href={textPersonal.links.github} className='group'>
-                            <SiGithub className='fill-almostbright size-[1.25rem] group-hover:fill-bright' />
+                            <SiGithub className='
+                              size-5 fill-almostbright
+                              group-hover:fill-bright
+                            ' />
                         </Link>
                         <Link href={textPersonal.links.gitlab} className='group'>
-                            <SiGitlab className='fill-almostbright size-[1.25rem] group-hover:fill-[#FC6D26]' />
+                            <SiGitlab className='
+                              size-5 fill-almostbright
+                              group-hover:fill-[#FC6D26]
+                            ' />
                         </Link>
-                        <Link href={textPersonal.links.linkedIn} className='group'>
-                            <SiLinkedin className='fill-almostbright size-[1.25rem] group-hover:fill-[#0a66c2]' />
+                        <Link href={textPersonal.links.linkedIn} className='
+                          group
+                        '>
+                            <SiLinkedin className='
+                              size-5 fill-almostbright
+                              group-hover:fill-[#0a66c2]
+                            ' />
                         </Link>
                     </div>
                 </div>
             </div>
             
             {/* Version */}
-            <div className='h-min p-[0.5rem_0.75rem] rounded-lg bg-dark border border-extralight hover:border-superlight'>
-                <span className='font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-rose-400'>v{version}</span>
+            <div className='
+              h-min rounded-sm border border-extralight bg-dark
+              p-[0.25rem_0.75rem] font-mono text-almostbright
+            '>
+                <span>v{version}</span>
             </div>
         </div>
     )

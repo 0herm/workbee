@@ -16,20 +16,28 @@ export default function Carousel({ images }: { images: string[] }) {
                 height={600}
                 className='object-cover'
             />
-            <div className='absolute top-[0.5rem] right-[0.5rem] bg-black/50 text-white px-[0.5rem] py-[0.25rem] rounded'>
+            <div className='
+              absolute top-2 right-2 rounded-sm bg-black/50 px-2 py-1 text-white
+            '>
                 {activeIndex + 1} / {images.length}
             </div>
             <button
                 onClick={() =>
                     setActiveIndex((activeIndex - 1 + images.length) % images.length)
                 }
-                className='absolute left-[0.5rem] top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-[0.5rem] rounded-full'
+                className='
+                  absolute top-1/2 left-2 -translate-y-1/2 transform
+                  rounded-full bg-black/50 p-2 text-white
+                '
             >
                 <ChevronLeft />
             </button>
             <button
                 onClick={() => setActiveIndex((activeIndex + 1) % images.length)}
-                className='absolute right-[0.5rem] top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-[0.5rem] rounded-full'
+                className='
+                  absolute top-1/2 right-2 -translate-y-1/2 transform
+                  rounded-full bg-black/50 p-2 text-white
+                '
             >
                 <ChevronRight />
             </button>

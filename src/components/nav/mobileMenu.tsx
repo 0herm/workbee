@@ -63,19 +63,28 @@ export default function MobileNav({ text }: MobileNavProps) {
     return (
         <>
             {/* Mobile Navigation */}
-            <div className='flex sm:hidden items-center justify-between size-[1.75rem] relative z-[102]'>
+            <div className='
+              relative z-102 flex size-7 items-center justify-between
+              sm:hidden
+            '>
                 <button
                     onClick={() => setIsMenuOpen(true)}
-                    className={'size-[1.75rem] flex items-center justify-center'}
+                    className={'flex size-7 items-center justify-center'}
                     aria-expanded={isMenuOpen}
                 >
-                    <Menu className='size-[1.75rem]' />
+                    <Menu className='size-7' />
                 </button>
             </div>
 
             {/* Overlay */}
             <div
-                className={`fixed top-0 left-0 w-screen h-screen z-[100] md:hidden ${isMenuOpen ? 'opacity-80 pointer-events-auto backdrop-blur-[2px]' : 'opacity-0 pointer-events-none'}`}
+                className={`
+                  fixed top-0 left-0 z-100 h-screen w-screen
+                  md:hidden
+                  ${isMenuOpen ? `
+                    pointer-events-auto opacity-80 backdrop-blur-[2px]
+                  ` : 'pointer-events-none opacity-0'}
+                `}
                 style={{ background: 'rgba(0,0,0,0.7)' }}
                 onClick={() => setIsMenuOpen(false)}
                 aria-hidden='true'
@@ -86,37 +95,79 @@ export default function MobileNav({ text }: MobileNavProps) {
                 id='mobile-menu-panel'
                 ref={panelRef}
                 tabIndex={-1}
-                className={`fixed top-0 right-0 h-screen w-[85%] max-w-[340px] bg-normal/95 backdrop-blur-lg border-l-[0.15rem] border-light shadow-2xl transform ease-in-out z-[103] md:hidden flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                className={`
+                  fixed top-0 right-0 z-103 flex h-screen w-[85%] max-w-[340px]
+                  transform flex-col border-l-[0.15rem] border-light
+                  bg-normal/95 shadow-2xl backdrop-blur-lg ease-in-out
+                  md:hidden
+                  ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+                `}
                 role='dialog'
                 aria-modal='true'
                 aria-label='Mobile menu'
             >
                 {/* Header */}
-                <div className='flex items-center justify-between p-6 border-b-[0.15rem] border-light/50'>
+                <div className='
+                  flex items-center justify-between border-b-[0.15rem]
+                  border-light/50 p-6
+                '>
                     <h2 className='text-xl font-semibold'>{text.menu}</h2>
                     <button
                         onClick={() => setIsMenuOpen(false)}
-                        className='p-2 rounded-full hover:bg-light hover:bg-opacity-10 group'
+                        className='
+                          hover:bg-opacity-10
+                          group rounded-full p-2
+                          hover:bg-light
+                        '
                         aria-label='Close menu'
                     >
                         <X className='size-5 text-almostbright' />
                     </button>
                 </div>
                 {/* Links */}
-                <nav className='p-6 flex-1 overflow-y-auto' role='navigation'>
+                <nav className='flex-1 overflow-y-auto p-6' role='navigation'>
                     <ul className='space-y-3'>
                         {links.map((link, index) => (
-                            <li key={link.href} style={{ animationDelay: `${index * 60}ms` }} className={isMenuOpen ? 'animate-slideInRight' : ''}>
+                            <li key={link.href} style={{ animationDelay: `${index * 60}ms` }} className={isMenuOpen ? `
+                              animate-slideInRight
+                            ` : ''}>
                                 <Link
                                     href={link.href}
                                     tabIndex={isMenuOpen ? 0 : -1}
-                                    className={`block px-5 py-4 rounded-xl group ${link.active ? 'bg-darker border-[0.15rem] border-light shadow-md' : 'hover:bg-darker/50 hover:pl-7'}`}
+                                    className={`
+                                      group block rounded-xl px-5 py-4
+                                      ${link.active ? `
+                                        border-[0.15rem] border-light bg-darker
+                                        shadow-md
+                                      ` : 'hover:bg-darker/50 hover:pl-7'}
+                                    `}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    <div className='flex items-center justify-between'>
-                                        <span className={`font-medium ${link.active ? 'text-bright' : 'text-almostbright group-hover:text-bright'}`}>{link.label}</span>
+                                    <div className='
+                                      flex items-center justify-between
+                                    '>
+                                        <span className={`
+                                          font-medium
+                                          ${link.active ? 'text-bright' : `
+                                            text-almostbright
+                                            group-hover:text-bright
+                                          `}
+                                        `}>{link.label}</span>
                                         {link.active && (
-                                            <div className={`w-2.5 h-2.5 rounded-full animate-pulse ${link.href === '/' ? 'bg-teal-500 shadow-lg shadow-teal-500/50' : link.href === '/projects' ? 'bg-cyan-500 shadow-lg shadow-cyan-500/50' : 'bg-blue-500 shadow-lg shadow-blue-500/50'}`}/>
+                                            <div className={`
+                                              size-2.5 animate-pulse
+                                              rounded-full
+                                              ${link.href === '/' ? `
+                                                bg-teal-500 shadow-lg
+                                                shadow-teal-500/50
+                                              ` : link.href === '/projects' ? `
+                                                bg-cyan-500 shadow-lg
+                                                shadow-cyan-500/50
+                                              ` : `
+                                                bg-blue-500 shadow-lg
+                                                shadow-blue-500/50
+                                              `}
+                                            `}/>
                                         )}
                                     </div>
                                 </Link>

@@ -4,7 +4,7 @@ import en from '@dictionaries/contact/en.json'
 import no from '@dictionaries/contact/no.json'
 import enPersonal from '@dictionaries/personal/en.json'
 import Link from 'next/link'
-import { Mail, Send } from 'lucide-react'
+import { Send } from 'lucide-react'
 
 export default function Contact() {
     // client-side cookie helper
@@ -31,83 +31,135 @@ export default function Contact() {
 
     return (
         <>
-            <h2 className='text-xl sm:text-2xl md:text-3xl font-bold mb-[2rem] flex items-center gap-[0.75rem]'>
-                <span className='p-[0.375rem] sm:p-[0.5rem] bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg flex-shrink-0'>
-                    <Mail className='w-[1.5rem] h-[1.5rem] text-blue-400' />
-                </span>
-                <span className='break-words'>{text.title}</span>
+            <h2 className='
+              mb-8 flex items-center gap-3 text-xl font-bold
+              sm:text-2xl
+              md:text-3xl
+            '>
+                <span className='font-mono text-3xl text-blue-500'>&gt;</span>
+                <span className='wrap-break-word'>{text.title}</span>
             </h2>
 
             {/* client-side form (no server action) */}
-            <div className='space-y-[1.5rem] md:space-y-[2rem] w-full'>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-[1.5rem]'>
+            <div className='
+              w-full space-y-6
+              md:space-y-8
+            '>
+                <div className='
+                  grid grid-cols-1 gap-6
+                  md:grid-cols-2
+                '>
                     <div>
-                        <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.name}</label>
+                        <label className='
+                          mb-2 block font-mono text-sm text-almostbright
+                          sm:text-base
+                        '>$ {text.name}:</label>
                         <input
-                            placeholder={text.namePlaceholder}
+                            placeholder='_'
                             type='text'
                             name='name'
                             required
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50'
+                            className='
+                              w-full rounded-lg border border-extralight bg-dark
+                              p-2.5 font-mono transition-colors
+                              focus:border-bright focus:outline-none
+                              sm:p-3
+                            '
                         />
                     </div>
 
                     <div>
-                        <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.email}</label>
+                        <label className='
+                          mb-2 block font-mono text-sm text-almostbright
+                          sm:text-base
+                        '>$ {text.email}:</label>
                         <input
-                            placeholder={text.emailPlaceholder}
+                            placeholder='_'
                             type='email'
                             name='email'
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50'
+                            className='
+                              w-full rounded-lg border border-extralight bg-dark
+                              p-2.5 font-mono transition-colors
+                              focus:border-bright focus:outline-none
+                              sm:p-3
+                            '
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.subject}</label>
+                    <label className='
+                      mb-2 block font-mono text-sm text-almostbright
+                      sm:text-base
+                    '>$ {text.subject}:</label>
                     <input
-                        placeholder={text.subjectPlaceholder}
+                        placeholder='_'
                         type='text'
                         name='subject'
                         required
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
-                        className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50'
+                        className='
+                          w-full rounded-lg border border-extralight bg-dark
+                          p-2.5 font-mono transition-colors
+                          focus:border-bright focus:outline-none
+                          sm:p-3
+                        '
                     />
                 </div>
 
                 <div>
-                    <label className='block text-almostbright mb-[0.5rem] text-sm sm:text-base font-medium'>{text.message}</label>
+                    <label className='
+                      mb-2 block font-mono text-sm text-almostbright
+                      sm:text-base
+                    '>$ {text.message}:</label>
                     <textarea
-                        placeholder={text.messagePlaceholder}
+                        placeholder='_'
                         name='message'
                         required
                         rows={6}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        className='w-full p-[0.625rem] sm:p-[0.75rem] rounded-lg border bg-dark border-extralight focus:border-superlight focus:outline-none focus:ring-1 focus:ring-blue-500/50 resize-none'
+                        className='
+                          w-full resize-y rounded-lg border border-extralight
+                          bg-dark p-2.5 font-mono transition-colors
+                          focus:border-bright focus:outline-none
+                          sm:p-3
+                        '
                     />
                 </div>
 
-                <div className='pt-[0.5rem] flex justify-center'>
+                <div className='flex justify-center pt-2'>
                     {isValid ? (
-                        <Link href={mailtoUrl} className='group inline-flex items-center justify-center gap-[0.5rem] px-[1.25rem] sm:px-[1.5rem] py-[0.625rem] sm:py-[0.75rem] bg-gradient-to-r from-blue-800/80 to-purple-800/80 text-white rounded-lg font-medium hover:from-blue-700/80 hover:to-purple-700/80 w-full sm:w-auto'>
-                            {text.submit}
-                            <Send className='w-[1.25rem] h-[1.25rem] group-hover:translate-x-1' />
+                        <Link href={mailtoUrl} className='
+                          group inline-flex w-full items-center justify-center
+                          gap-2 rounded-lg border border-bright px-5 py-2.5
+                          font-mono text-bright uppercase transition-colors
+                          hover:bg-bright hover:text-darker
+                          sm:w-auto sm:px-6 sm:py-3
+                        '>
+                            [ {text.submit} ]
+                            <Send className='size-4' />
                         </Link>
                     ) : (
                         <button
                             type='button'
                             disabled
-                            className='group inline-flex items-center justify-center gap-[0.5rem] px-[1.25rem] sm:px-[1.5rem] py-[0.625rem] sm:py-[0.75rem] bg-gradient-to-r from-blue-800/40 to-purple-800/40 text-white rounded-lg font-medium w-full sm:w-auto opacity-50 cursor-not-allowed'
+                            className='
+                              group inline-flex w-full cursor-not-allowed
+                              items-center justify-center gap-2 rounded-lg
+                              border border-extralight px-5 py-2.5 font-mono
+                              text-almostbright uppercase opacity-50
+                              sm:w-auto sm:px-6 sm:py-3
+                            '
                         >
-                            {text.submit}
-                            <Send className='w-[1.25rem] h-[1.25rem]' />
+                            [ {text.submit} ]
+                            <Send className='size-4' />
                         </button>
                     )}
                 </div>

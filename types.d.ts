@@ -64,6 +64,7 @@ type FooterDictionary = {
 type ProjectsDictionary = {
     projects: {
         title: string
+        disclaimer: string
         viewProject: string
         viewMore: string
         projects: {
@@ -92,6 +93,7 @@ type ProjectsDictionary = {
 
 type SkillsDictionary = {
     title: string
+    disclaimer: string
     categories: {
         [key: string]: SkillCategory
     }
