@@ -1,7 +1,7 @@
 import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import typescriptParser from '@typescript-eslint/parser'
-import stylisticJs from '@stylistic/eslint-plugin-js'
+import stylisticJs from '@stylistic/eslint-plugin'
 
 export default [
     eslint.configs.recommended,

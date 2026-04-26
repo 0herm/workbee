@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 type MobileNavProps = {
-  text: NavBarDictionary
+    text: NavBarDictionary
 }
 
 export default function MobileNav({ text }: MobileNavProps) {

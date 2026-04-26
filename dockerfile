@@ -1,35 +1,33 @@
-# Node image with Alpine Linux
-FROM node:23-alpine
-
-# Varnish 
-RUN apk add --no-cache varnish
-
-# Install latest npm
-RUN npm install -g npm@latest
-
-# Workdir required for tailwind to compile
+# Builder
+FROM oven/bun:alpine AS builder
 WORKDIR /app
 
-# Copies varnish
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+
+COPY . .
+RUN bun run lint
+RUN bun run build
+
+# Runtime
+FROM oven/bun:alpine
+WORKDIR /app
+
+RUN apk add --no-cache varnish \
+    && addgroup -S app && adduser -S app -G app
+
+COPY --from=builder --chown=app:app /app/.next/standalone ./
+COPY --from=builder --chown=app:app /app/.next/static ./.next/static
+COPY --from=builder --chown=app:app /app/public ./public
+
 COPY default.vcl /etc/varnish/default.vcl
 
-# Copies package.json and package-lock.json
-COPY package*.json ./
+RUN chown app:app /etc/varnish
+RUN chown app:app /var/lib/varnish
+USER app
 
-# Copies entrypoint
-COPY entrypoint.sh ./entrypoint.sh
-
-# Installs dependencies
-RUN npm ci
-
-# Copies the rest of the UI source code
-COPY . .
-
-# Builds the application
-RUN npm run build
-
-# Exposes port 8080
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3001
 EXPOSE 3000
 
-# Starts the application
-CMD ["/bin/sh", "/app/entrypoint.sh"]
+CMD ["sh", "-c", "varnishd -a :3000 -f /etc/varnish/default.vcl -s malloc,1g & bun server.js"]
